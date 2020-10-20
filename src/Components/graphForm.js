@@ -27,7 +27,7 @@ class GraphForm extends Component {
     //     })
     // }
     onSubmit = (event) => {
-        // event.preventDefault();
+        event.preventDefault();
         console.log("These are from and to dates", this.state)
         let from_date = "from_date=" + this.state.fromDate;
         let to_date = "to_date=" + this.state.toDate;
