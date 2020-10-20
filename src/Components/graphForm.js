@@ -1,4 +1,3 @@
-import Axios from 'axios';
 import React, { Component } from 'react'
 import LineGraph from './linegraph'
 
@@ -6,23 +5,16 @@ class GraphForm extends Component {
     initialState = {
         fromDate: '',
         toDate: '',
-        lineGraph: [[
-            {
-                userscount: 2,
-                created_time: "2020-10-12T18:30:00.000Z"
-            },
-            {
-                userscount: 6,
-                created_time: "2020-10-13T18:30:00.000Z"
-            }
-        ]]
+        graphDataUrl: ''
     }
     state = this.initialState;
 
     fromDateChange = (event) => {
+        console.log(event.target.value)
         this.setState({
             fromDate: event.target.value
         });
+        
     }
     toDateChange = (event) => {
         this.setState({
@@ -40,17 +32,12 @@ class GraphForm extends Component {
         let from_date = "from_date=" + this.state.fromDate;
         let to_date = "to_date=" + this.state.toDate;
         let url = `http://localhost:3000/counts/?` + from_date + "&" + to_date;
-        Axios.get(url, {
-            responseType: 'json'
+        this.setState({
+            graphDataUrl: url
         })
-            .then(resp => {
-                this.setState({
-                    lineGraph: resp.data
-                });
-            })
     }
     render() {
-        const { fromDate, toDate,lineGraph } = this.state;
+        const { fromDate, toDate,graphDataUrl } = this.state;
         return (
             <div>
                 <form onSubmit={this.onSubmit}>
@@ -70,7 +57,9 @@ class GraphForm extends Component {
                     </div>
                     <button type="submit" > Submit </button>
                 </form>
-                <LineGraph graphData={lineGraph}/>
+                {/* {lineGraph && lineGraph.length > 0 && <LineGraph graphData={g}/>} */}
+                { graphDataUrl && graphDataUrl.length>0 ? <LineGraph graphDataUrl={graphDataUrl}/> :<LineGraph graphDataUrl=""/> }
+                
             </div>
 
         );
