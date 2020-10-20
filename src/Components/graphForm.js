@@ -27,7 +27,7 @@ class GraphForm extends Component {
     //     })
     // }
     onSubmit = (event) => {
-        event.preventDefault();
+        // event.preventDefault();
         console.log("These are from and to dates", this.state)
         let from_date = "from_date=" + this.state.fromDate;
         let to_date = "to_date=" + this.state.toDate;
@@ -58,7 +58,8 @@ class GraphForm extends Component {
                     <button type="submit" > Submit </button>
                 </form>
                 {/* {lineGraph && lineGraph.length > 0 && <LineGraph graphData={g}/>} */}
-                { graphDataUrl && graphDataUrl.length>0 ? <LineGraph graphDataUrl={graphDataUrl}/> :<LineGraph graphDataUrl=""/> }
+                { graphDataUrl && graphDataUrl.length>0 ? <LineGraph graphDataUrl={graphDataUrl}/> :<LineGraph graphDataUrl="http://localhost:3000/counts/?from_date=2020-10-12&to_date=2020-10-16
+"/> }
                 
             </div>
 

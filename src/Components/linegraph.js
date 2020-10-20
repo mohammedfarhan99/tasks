@@ -45,44 +45,47 @@ class LineGraph extends Component {
         }).catch(err => console.log(err))
     }
 
-  }
-
-
-
-  componentWillUpdate() {
-    if (this.props.graphDataUrl.length>0) {
-      Axios.get(this.props.graphDataUrl, this.state)
-        .then(resp => {
-          this.setState({
-            labels: resp.data.map(data => { return data.created_time }),
-            datasets: [
-              {
-                label: 'Users',
-                fill: false,
-                lineTension: 0.5,
-                backgroundColor: 'rgba(75,192,192,1)',
-                borderColor: 'rgba(0,0,0,1)',
-                borderWidth: 2,
-                data: resp.data.map(data => { return data.userscount })
-              }
-            ]
-          })
-
-        })
-    }
-
 
   }
+
+
+
+  // componentDidUpdate(previousProps) {
+  //   if (this.props.graphDataUrl.length>0) {
+  //     if(this.state.labels.length===0)
+  //       Axios.get(this.props.graphDataUrl, this.state)
+  //       .then(resp => {
+  //         this.setState({
+  //           labels: resp.data.map(data => { return data.created_time }),
+  //           datasets: [
+  //             {
+  //               label: 'Users',
+  //               fill: false,
+  //               lineTension: 0.5,
+  //               backgroundColor: 'rgba(75,192,192,1)',
+  //               borderColor: 'rgba(0,0,0,1)',
+  //               borderWidth: 2,
+  //               data: resp.data.map(data => { return parseInt(data.userscount) })
+  //             }
+  //           ]
+  //         })
+
+  //       })
+      
+
+  //   }
+
+
+  // }
   render() {
     if (this.props.graphDataUrl.length>0 ) {
-      const { data } = this.state.datasets[0];
-
-      console.log("This is data from state in line graph", data)
+      // if(this.state.labels.length>0){
+        console.log("This is data from state in line graph", this.state.datasets[0].data)
       console.log("Inside Line graph", this.props)
       return (
         <div>
           <Line
-            data={data}
+            data={this.state}
             options={{
               title: {
                 display: true,
@@ -97,12 +100,16 @@ class LineGraph extends Component {
           />
         </div>
       )
-    }
-    else{
-      return(
-        <h1>Waiting for input</h1>
-      )
-    }
+      }else{
+      }
+
+      
+    // }
+    // else{
+    //   return(
+    //     <h1>Waiting for input</h1>
+    //   )
+    // }
    }
 }
 
