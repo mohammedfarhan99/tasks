@@ -22,6 +22,7 @@ We use this format data sent by our database into human understandable format
 # pg
 For Extensible JS ↔ PostgreSQL data-type coercion
 
+---------------------------------------------------------------------
 # Frontend Dependencies:
 # react
 For creating robust user interfaces
