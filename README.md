@@ -10,6 +10,8 @@ Run the server.js file via nodemon server.js and make sure it is running on port
 # Step 3
 Start the application by npm start 
 
+----------------------------------------------------------------------------------
+
 # Backend Dependencies:
 # Express.js
 To set up our backend.
