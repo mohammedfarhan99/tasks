@@ -19,7 +19,6 @@ class Form extends Component {
         })
     }
     onSubmit = (event) => {
-        // event.preventDefault(); // TO prevent reloading of webpage
         console.log("This is what the frontend is sending", this.state);
         axios.post('http://localhost:3000/create_user', this.state)
             .then(data => console.log("This is after submitting", data.data))

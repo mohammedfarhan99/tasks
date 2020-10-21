@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import './../Stylesheets/bulma.css'
+import './../Stylesheets/bulma.css' //For styling table
 
 const TableHeader = () => {
     return (
@@ -66,4 +66,4 @@ class Table extends React.Component {
 }
 
 
-export default Table
+export default Table;

@@ -5,13 +5,13 @@ const cors = require('cors');
 const { response } = require('express');
 const knex = require('knex');
 
-//Your databse creds here
+//Your database credentials here
 const database = knex({
     client: 'pg',
     connection: {
       host : '127.0.0.1',
-      user : '',
-      password : '',
+      user : 'postgres',
+      password : '197203',
       database : 'application'
     }
   });
@@ -25,7 +25,7 @@ app.use(cors());
 
 
 
-
+//Route to get particular dates given by the user
 app.get('/', (req,res)=>{
     //Accessing from_date and to_date from the url
     let from_date = req.query.from_date;
@@ -35,6 +35,7 @@ app.get('/', (req,res)=>{
     .catch(err=>res.status(400).json('query incorrect'))
 }) 
 
+//Route that gets the number of users in a particular date
 app.get('/counts/',(req,res)=>{
     let from_date = req.query.from_date;
     let to_date = req.query.to_date;
@@ -52,7 +53,7 @@ app.get('/counts/',(req,res)=>{
 
 
 
-
+//Creates a user in the postgres database
 app.post('/create_user',(req,res)=>{
     const {name,email,time} = req.body;
     // if(err) console.log(err);

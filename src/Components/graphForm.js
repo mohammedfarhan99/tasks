@@ -1,14 +1,18 @@
-import React, { Component } from 'react'
-import LineGraph from './linegraph'
+import React, { Component } from 'react';
+import LineGraph from './linegraph';
+import './../Stylesheets/form.css'; //Importing form styles
+import './../Stylesheets/app.css';
+
 
 class GraphForm extends Component {
     initialState = {
-        fromDate: '',
-        toDate: '',
+        fromDate: '2020-10-12',      /** Default dates to show in  input form*/
+        toDate: '2020-10-16',
         graphDataUrl: ''
     }
     state = this.initialState;
 
+    
     fromDateChange = (event) => {
         console.log(event.target.value)
         this.setState({
@@ -21,13 +25,9 @@ class GraphForm extends Component {
             toDate: event.target.value
         })
     }
-    // changeHandler = (event)=>{
-    //     this.setState({
-    //         [event.target.name]: event.target.value
-    //     })
-    // }
+
     onSubmit = (event) => {
-        event.preventDefault();
+        event.preventDefault();//To prevent reloading of page as state and props reset after reloading the page
         console.log("These are from and to dates", this.state)
         let from_date = "from_date=" + this.state.fromDate;
         let to_date = "to_date=" + this.state.toDate;
@@ -40,7 +40,7 @@ class GraphForm extends Component {
         const { fromDate, toDate,graphDataUrl } = this.state;
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit} className="form-style-5">
                     <div>
                         <label htmlFor="fromDate">From Date:</label>
                         <input type="date"
@@ -57,7 +57,7 @@ class GraphForm extends Component {
                     </div>
                     <button type="submit" > Submit </button>
                 </form>
-                {/* {lineGraph && lineGraph.length > 0 && <LineGraph graphData={g}/>} */}
+                {/* Inputs default url of dates  12-10-2020 - 16-10-2020 until user gives a different input */}
                 { graphDataUrl && graphDataUrl.length>0 ? <LineGraph graphDataUrl={graphDataUrl}/> :<LineGraph graphDataUrl="http://localhost:3000/counts/?from_date=2020-10-12&to_date=2020-10-16
 "/> }
                 

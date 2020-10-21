@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React, { Component } from 'react';
-import { Line } from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2';
+const {DateTime} = require('luxon');
 
 
 
@@ -29,7 +30,7 @@ class LineGraph extends Component {
         .then(resp => {
           console.log("Inside Component Mount", resp.data)
           this.setState({
-            labels: resp.data.map(data => { return data.created_time }),
+            labels: resp.data.map(data => { return DateTime.fromISO(data.created_time).toLocaleString(DateTime.DATETIME_FULL) }),
             datasets: [
               {
                 label: 'Users',
@@ -56,7 +57,7 @@ class LineGraph extends Component {
         Axios.get(this.props.graphDataUrl, this.state)
         .then(resp => {
           this.setState({
-            labels: resp.data.map(data => { return data.created_time }),
+            labels: resp.data.map(data => { return DateTime.fromISO(data.created_time).toLocaleString(DateTime.DATETIME_FULL) }),
             datasets: [
               {
                 label: 'Users',
