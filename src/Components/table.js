@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './../Stylesheets/bulma.css' //For styling table
+const {DateTime} = require('luxon');
 
 const TableHeader = () => {
     return (
@@ -22,7 +23,7 @@ const TableBody = (props) => {
                 <td>{row.user_id}</td>
                 <td>{row.user_name}</td>
                 <td>{row.email}</td>
-                <td>{row.created_time}</td>
+                <td>{DateTime.fromISO(row.created_time).toLocaleString(DateTime.DATETIME_FULL) }</td>
             </tr>
         )
     })
