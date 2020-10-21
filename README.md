@@ -20,7 +20,7 @@ We use cors so that our web browser recognises our express server.
 # Knex
 We use the knex package to connect to our database and interact with it by inputing database queries requested by our frontend
 # Luxon
-We use this format data sent by our database into human understandable format
+We use this dependency to format data sent by our database into human understandable format
 # pg
 For Extensible JS ↔ PostgreSQL data-type coercion
 
