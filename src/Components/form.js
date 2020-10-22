@@ -42,6 +42,7 @@ class Form extends Component {
                     <input type="email"
                         name="email"
                         value={email}
+                        required
                         onChange={this.changeHandler} /> </div> < div >
                     < label className="label"
                         htmlFor="timeOFCreation" > Time of Creation </label> </div> <div >

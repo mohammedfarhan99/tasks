@@ -18,7 +18,6 @@ const database = knex({
 
 
 
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
@@ -28,8 +27,8 @@ app.use(cors());
 //Route to get particular dates given by the user
 app.get('/', (req,res)=>{
     //Accessing from_date and to_date from the url
-    let from_date = req.query.from_date;
-    let to_date = req.query.to_date;
+    let from_date = req.query.from_date || '12-oct-2020';
+    let to_date = req.query.to_date || '16-oct-2020';
     database('users').whereBetween('created_time',[from_date,to_date])
     .then(response => res.status(200).json(response))
     .catch(err=>res.status(400).json('query incorrect'))

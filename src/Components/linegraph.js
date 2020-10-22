@@ -22,28 +22,32 @@ class LineGraph extends Component {
     ]
   }
   state = this.initialstate;
+
+  settingGraphData = ()=>{
+    Axios.get(this.props.graphDataUrl, {
+      responseType: "json"
+    })
+      .then(resp => {
+        console.log("Inside Component Mount", resp.data)
+        this.setState({
+          labels: resp.data.map(data => { return DateTime.fromISO(data.created_time).toLocaleString(DateTime.DATETIME_FULL) }),
+          datasets: [
+            {
+              label: 'Users',
+              fill: false,
+              lineTension: 0.5,
+              backgroundColor: 'rgba(75,192,192,1)',
+              borderColor: 'rgba(0,0,0,1)',
+              borderWidth: 2,
+              data: resp.data.map(data => { return parseInt(data.userscount) })
+            }
+          ]
+        })
+      }).catch(err => console.log(err))
+  }
   componentDidMount() {
     if (this.props.graphDataUrl.length>0) {
-      Axios.get(this.props.graphDataUrl, {
-        responseType: "json"
-      })
-        .then(resp => {
-          console.log("Inside Component Mount", resp.data)
-          this.setState({
-            labels: resp.data.map(data => { return DateTime.fromISO(data.created_time).toLocaleString(DateTime.DATETIME_FULL) }),
-            datasets: [
-              {
-                label: 'Users',
-                fill: false,
-                lineTension: 0.5,
-                backgroundColor: 'rgba(75,192,192,1)',
-                borderColor: 'rgba(0,0,0,1)',
-                borderWidth: 2,
-                data: resp.data.map(data => { return parseInt(data.userscount) })
-              }
-            ]
-          })
-        }).catch(err => console.log(err))
+      this.settingGraphData();
     }
 
 
@@ -54,24 +58,9 @@ class LineGraph extends Component {
   componentDidUpdate(previousProps) {
     if (this.props.graphDataUrl.length>0) {
       if(previousProps.graphDataUrl !== this.props.graphDataUrl){
-        Axios.get(this.props.graphDataUrl, this.state)
-        .then(resp => {
-          this.setState({
-            labels: resp.data.map(data => { return DateTime.fromISO(data.created_time).toLocaleString(DateTime.DATETIME_FULL) }),
-            datasets: [
-              {
-                label: 'Users',
-                fill: false,
-                lineTension: 0.5,
-                backgroundColor: 'rgba(75,192,192,1)',
-                borderColor: 'rgba(0,0,0,1)',
-                borderWidth: 2,
-                data: resp.data.map(data => { return parseInt(data.userscount) })
-              }
-            ]
-          })
 
-        })
+
+        this.settingGraphData();
       
       }
   
@@ -104,6 +93,7 @@ class LineGraph extends Component {
         </div>
       )
       }else{
+        return null;
       }
 
       
