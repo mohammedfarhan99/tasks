@@ -4,6 +4,12 @@
 Please install all dependencies by npm install.
 
 # Step 2
+
+Input your database credentials in .env file
+
+Migration:
+type in knex migrate:latest command to get the users table in your postgres database
+                           OR
 Create a users table in your postgres database using this (in case database migration fails):
 
 create table users(
@@ -14,7 +20,6 @@ create table users(
 );
 
 
-Input your database credentials in the server.js file
 Run the server.js file via nodemon server.js and make sure it is running on port 3000 in your local environment
 
 # Step 3
