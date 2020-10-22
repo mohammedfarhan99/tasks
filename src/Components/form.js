@@ -21,7 +21,7 @@ class Form extends Component {
     onSubmit = (event) => {
         console.log("This is what the frontend is sending", this.state);
         axios.post('http://localhost:3000/create_user', this.state)
-            .then(data => console.log("This is after submitting", data.data))
+            .then(data => console.log("Post request successful",)) /** To check if the post request was successful or not*/
             .catch(err => console.log(err))
     }
     render() {

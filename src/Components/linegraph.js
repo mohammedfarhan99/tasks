@@ -28,7 +28,6 @@ class LineGraph extends Component {
       responseType: "json"
     })
       .then(resp => {
-        console.log("Inside Component Mount", resp.data)
         this.setState({
           labels: resp.data.map(data => { return DateTime.fromISO(data.created_time).toLocaleString(DateTime.DATETIME_FULL) }),
           datasets: [
@@ -71,9 +70,6 @@ class LineGraph extends Component {
   }
   render() {
     if (this.props.graphDataUrl.length>0 ) {
-      // if(this.state.labels.length>0){
-        console.log("This is data from state in line graph", this.state.datasets[0].data)
-      console.log("Inside Line graph", this.props)
       return (
         <div>
           <Line
@@ -97,12 +93,7 @@ class LineGraph extends Component {
       }
 
       
-    // }
-    // else{
-    //   return(
-    //     <h1>Waiting for input</h1>
-    //   )
-    // }
+    
    }
 }
 

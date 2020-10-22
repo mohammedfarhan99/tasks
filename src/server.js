@@ -9,10 +9,13 @@ const knex = require('knex');
 const database = knex({
     client: 'pg',
     connection: {
-      host : '127.0.0.1',
-      user : 'postgres',
-      password : '197203',
-      database : 'application'
+      host : '',
+      user : '',
+      password : '',
+      database : ''
+    },
+    migrations:{
+        tableName: "users"
     }
   });
 

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import LineGraph from './linegraph';
 import './../Stylesheets/form.css'; //Importing form styles
-import './../Stylesheets/app.css';
-
+import { DateTime } from 'luxon';
 
 class GraphForm extends Component {
+     dateFormat = DateTime.local()
     initialState = {
-        fromDate: '2020-10-12',      /** Default dates to show in  input form*/
-        toDate: '2020-10-16',
+        fromDate: this.dateFormat.year+"-"+this.dateFormat.month+"-"+"0"+this.dateFormat.set({day:1}).day,      /** Default dates to show in  input form*/
+        toDate: this.dateFormat.year+"-"+this.dateFormat.month+"-"+this.dateFormat.day,
         graphDataUrl: ''
     }
     state = this.initialState;
@@ -28,7 +28,6 @@ class GraphForm extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();//To prevent reloading of page as state and props reset after reloading the page
-        console.log("These are from and to dates", this.state)
         let from_date = "from_date=" + this.state.fromDate;
         let to_date = "to_date=" + this.state.toDate;
         let url = `http://localhost:3000/counts/?` + from_date + "&" + to_date;
