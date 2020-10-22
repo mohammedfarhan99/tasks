@@ -47,7 +47,15 @@ For visualzing our data
 
 # react-chartjs-2
 React wrapper for chart.js
+
 ----------------------------------------------------------------------
+
+
+# How the template looks like:
+
+[![tasks-table.png](https://i.postimg.cc/sX18j72Z/tasks-table.png)](https://postimg.cc/7G8XXC0x)
+
+[![tasks-chart.png](https://i.postimg.cc/xTGsStP4/tasks-chart.png)](https://postimg.cc/BX65T5kT)
 
 
 
