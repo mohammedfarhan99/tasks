@@ -4,7 +4,7 @@
 Please install all dependencies by npm install.
 
 # Step 2
-Create a users table in your postgres table using this:
+Create a users table in your postgres database using this:
 
 create table users(
 	user_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
