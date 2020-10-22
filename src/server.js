@@ -4,18 +4,26 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { response } = require('express');
 const knex = require('knex');
-
+require('dotenv').config()
+const{
+  CLIENT,
+  DATABASE,
+  PG_USER,
+  PASSWORD,
+  HOST,
+  PG_PORT
+} = process.env
 //Your database credentials here
 const database = knex({
-    client: 'pg',
+    client: CLIENT,
     connection: {
-      host : '',
-      user : '',
-      password : '',
-      database : ''
+      host : HOST,
+      user : PG_USER,
+      password : PASSWORD,
+      database : DATABASE
     },
     migrations:{
-        tableName: "users"
+        tableName: "usersTable"
     }
   });
 
