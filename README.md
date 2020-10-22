@@ -8,7 +8,7 @@ Please install all dependencies by npm install.
 Input your database credentials in .env file
 
 Migration:
-type in knex migrate:latest command to get the users table in your postgres database
+type in # knex migrate:latest # command to get the users table in your postgres database
                            OR
 Create a users table in your postgres database using this (in case database migration fails):
 
