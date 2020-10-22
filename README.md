@@ -4,6 +4,16 @@
 Please install all dependencies by npm install.
 
 # Step 2
+Create a users table in your postgres table using this:
+
+create table users(
+	user_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	user_name TEXT NOT NULL,
+	email text,
+	created_time timestamp NOT NULL
+);
+
+
 Input your database credentials in the server.js file
 Run the server.js file via nodemon server.js and make sure it is running on port 3000 in your local environment
 
