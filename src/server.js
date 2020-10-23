@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { response } = require('express');
 const knex = require('knex');
+const { DateTime } = require('luxon');
 require('dotenv').config()
 const{
   CLIENT,
@@ -38,8 +39,8 @@ app.use(cors());
 //Route to get particular dates given by the user
 app.get('/', (req,res)=>{
     //Accessing from_date and to_date from the url
-    let from_date = req.query.from_date || '12-oct-2020';
-    let to_date = req.query.to_date || '16-oct-2020';
+    let from_date = req.query.from_date || (DateTime.local().year+"-"+DateTime.local().month+"-"+"01");
+    let to_date = req.query.to_date || (DateTime.local().year+"-"+DateTime.local().month+"-"+DateTime.local().day);
     database('users').whereBetween('created_time',[from_date,to_date])
     .then(response => res.status(200).json(response))
     .catch(err=>res.status(400).json('query incorrect'))
